@@ -5,15 +5,17 @@ This repository is intended for **learning, practice, and reference purposes**.
 
 ## Repository Structure
 
+```
 leetcode-solutions/
 │
 ├── python/
-│ ├── easy/ # Easy level problems
-│ ├── medium/ # Medium level problems
-│ └── hard/ # Hard level problems
+│   ├── easy/       # Easy level problems
+│   ├── medium/     # Medium level problems
+│   └── hard/       # Hard level problems
 │
-├── README.md # This file
+├── README.md       # This file
 └── LICENSE
+```
 
 ## Usage
 
@@ -24,12 +26,13 @@ leetcode-solutions/
 
 ```bash
 python problem_name.py
+```
 
-## Exmaple problems
+## Example Problems
 
 | Problem                                    | Python File                           | Description                                                             |
 | ------------------------------------------ | ------------------------------------- | ----------------------------------------------------------------------- |
-| Fizz Buzz                                  | fizz_buzz.py                          | Print numbers from 1 to n with "Fizz"/"Buzz"/"FizzBuzz" rules.          |
+| Fizz Buzz                                  | fizz_buzz.py                          | Print numbers from 1 to n with "Fizz"/"Buzz"/"FizzBuzz" rules.         |
 | Palindrome Number                          | palindrome_number.py                  | Check if an integer is a palindrome.                                    |
 | Reverse Integer                            | reverse_integer.py                    | Reverse digits of an integer.                                           |
 | Count the Number of Vowel Strings in Range | count_vowel_strings_in_range.py       | Count strings starting and ending with a vowel in a given range.        |
