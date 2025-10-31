@@ -50,4 +50,4 @@ python problem_name.py
 
 ## License
 
-This repository is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
+This repository is licensed under the **MIT License** – see the [LICENSE](license) file for details.
