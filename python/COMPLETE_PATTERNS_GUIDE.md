@@ -1,15 +1,15 @@
 # 🚀 COMPLETE LEETCODE PATTERNS & SOLUTIONS GUIDE
 
-**Last Updated:** November 23, 2025  
-**Total Problems:** 14 (12 Easy, 2 Medium)  
-**Perfect Solutions:** 4 ✓✓  
-**Near-Optimal:** 3 ✓
+**Last Updated:** December 2, 2025  
+**Total Problems:** 20 (17 Easy, 3 Medium)  
+**Perfect Solutions:** 6 ✓✓  
+**Near-Optimal:** 5 ✓
 
 ---
 
 ## 📚 TABLE OF CONTENTS
 
-### EASY PROBLEMS (12)
+### EASY PROBLEMS (17)
 1. [Add Digits](#1-add-digits-leetcode-258)
 2. [Count Vowel Strings in Range](#2-count-vowel-strings-in-range-leetcode-2586)
 3. [FizzBuzz](#3-fizzbuzz-leetcode-412)
@@ -22,10 +22,16 @@
 10. [Valid Parentheses](#10-valid-parentheses-leetcode-20)
 11. [Group Anagrams](#11-group-anagrams-leetcode-49)
 12. [String Compression](#12-string-compression-leetcode-443)
+13. [Two Sum](#13-two-sum-leetcode-1)
+14. [Move Zeroes](#14-move-zeroes-leetcode-283)
+15. [Majority Element](#15-majority-element-leetcode-169)
+16. [Intersection of Two Arrays](#16-intersection-of-two-arrays-leetcode-349)
+17. [Best Time to Buy and Sell Stock](#17-best-time-to-buy-and-sell-stock-leetcode-121)
 
-### MEDIUM PROBLEMS (2)
-13. [Reverse Integer](#13-reverse-integer-leetcode-7)
-14. [Remove Minimum and Maximum From Array](#14-remove-minimum-and-maximum-from-array-leetcode-2091)
+### MEDIUM PROBLEMS (3)
+18. [Reverse Integer](#18-reverse-integer-leetcode-7)
+19. [Remove Minimum and Maximum From Array](#19-remove-minimum-and-maximum-from-array-leetcode-2091)
+20. [Rotate Array](#20-rotate-array-leetcode-189)
 
 ---
 
@@ -960,9 +966,352 @@ Return: 6
 
 ---
 
+### 13. Two Sum (LeetCode #1)
+
+**🎯 Pattern:** Hash Map for Complement Lookup
+
+#### Your Approach
+```python
+class Solution(object):
+    def twoSum(self, nums, target):
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    return i, j
+```
+
+**Algorithm:**
+- Nested loops to check all pairs
+- Return indices when sum equals target
+
+**Complexity:**
+- **Time:** O(n²) - nested loops
+- **Space:** O(1) - no extra space
+
+**How It Works:**
+```
+nums = [2,7,11,15], target = 9
+i=0, j=1: 2+7=9 ✓ → return [0,1]
+```
+
+#### ✨ Optimal Approach
+
+```python
+class Solution:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
+        num_map = {}
+        for i, num in enumerate(nums):
+            comp = target - num
+            if comp in num_map:
+                return [num_map[comp], i]
+            num_map[num] = i
+        return []
+```
+
+**Algorithm:**
+- Use hash map to store seen numbers and their indices
+- For each number, check if its complement exists in map
+- Single pass through array
+
+**Complexity:**
+- **Time:** O(n) - single pass
+- **Space:** O(n) - hash map storage
+
+**How It Works:**
+```
+nums = [2,7,11,15], target = 9
+i=0, num=2: comp=7, map={} → add 2:0
+i=1, num=7: comp=2, map={2:0} → found! return [0,1]
+```
+
+**Key Learnings:**
+- ✅ Hash maps eliminate nested loops
+- ✅ O(n²) → O(n) is major improvement
+- ✅ Trade space for time: O(1) → O(n) space saves O(n) time
+- ✅ Classic pattern for pair-finding problems
+
+---
+
+### 14. Move Zeroes (LeetCode #283)
+
+**🎯 Pattern:** Two-Pointer In-Place Swap
+
+#### Your Approach
+```python
+class Solution(object):
+    def moveZeroes(self, nums):
+        for num in nums:
+            if num == 0:
+                nums.remove(num)
+                nums.append(0)
+        return nums
+```
+
+**Algorithm:**
+- Iterate through array
+- Remove zeros and append at end
+- Modify in-place
+
+**Complexity:**
+- **Time:** O(n²) - `remove()` is O(n) inside loop
+- **Space:** O(1) - in-place modification
+
+**Issues:**
+```
+[0,1,0,3,12]
+Remove first 0 → [1,0,3,12,0]
+Skip second 0 (iteration issue) ❌
+```
+
+#### ✨ Optimal Approach
+
+```python
+class Solution:
+    def moveZeroes(self, nums: list[int]) -> None:
+        i = 0  # Pointer for next non-zero position
+        for j in range(len(nums)):
+            if nums[j] != 0:
+                nums[i], nums[j] = nums[j], nums[i]
+                i += 1
+        return nums
+```
+
+**Algorithm:**
+- Two pointers: `i` for write position, `j` for read position
+- When non-zero found, swap with position `i` and increment `i`
+- All non-zeros move to front, zeros naturally move to back
+
+**Complexity:**
+- **Time:** O(n) - single pass
+- **Space:** O(1) - in-place swaps
+
+**How It Works:**
+```
+[0,1,0,3,12]
+j=0, nums[0]=0: skip
+j=1, nums[1]=1: swap(0,1) → [1,0,0,3,12], i=1
+j=2, nums[2]=0: skip
+j=3, nums[3]=3: swap(1,3) → [1,3,0,0,12], i=2
+j=4, nums[4]=12: swap(2,4) → [1,3,12,0,0], i=3
+```
+
+**Key Learnings:**
+- ✅ Avoid `remove()` in loops - causes O(n²)
+- ✅ Two-pointer swap is standard for element rearrangement
+- ✅ Preserve relative order of non-zero elements
+- ✅ In-place modification without creating new array
+
+---
+
+### 15. Majority Element (LeetCode #169)
+
+**🎯 Pattern:** Boyer-Moore Voting Algorithm
+
+#### Your Approach
+```python
+class Solution(object):
+    def majorityElement(self, nums):
+        count = {}
+        for num in nums:
+            count[num] = count.get(num, 0) + 1
+        
+        max_key = max(count, key=count.get)
+        return max_key
+```
+
+**Algorithm:**
+- Hash map to count all occurrences
+- Find element with maximum count
+
+**Complexity:**
+- **Time:** O(n) - single pass
+- **Space:** O(n) - hash map for all unique elements
+
+**How It Works:**
+```
+[2,2,1,1,1,2,2]
+count = {2:4, 1:3}
+max(count) → 2
+```
+
+#### ✨ Optimal Approach
+
+```python
+class Solution:
+    def majorityElement(self, nums: list[int]) -> int:
+        candidate = None
+        count = 0
+        
+        for num in nums:
+            if count == 0:
+                candidate = num
+            count += (1 if num == candidate else -1)
+        
+        return candidate
+```
+
+**Algorithm:**
+- Boyer-Moore Voting Algorithm
+- Maintain candidate and count
+- Increment count for candidate, decrement for others
+- When count reaches 0, switch candidate
+- Majority element (>n/2) will be final candidate
+
+**Complexity:**
+- **Time:** O(n) - single pass
+- **Space:** O(1) - two variables only
+
+**How It Works:**
+```
+[2,2,1,1,1,2,2]
+candidate=2, count=1 (num=2)
+candidate=2, count=2 (num=2)
+candidate=2, count=1 (num=1)
+candidate=2, count=0 (num=1)
+candidate=1, count=1 (num=1)
+candidate=1, count=0 (num=2)
+candidate=2, count=1 (num=2)
+Return: 2 ✓
+```
+
+**Key Learnings:**
+- ✅ Boyer-Moore eliminates need for hash map
+- ✅ O(n) space → O(1) space is significant
+- ✅ Works only when majority element guaranteed to exist
+- ✅ Clever algorithm based on cancellation principle
+
+---
+
+### 16. Intersection of Two Arrays (LeetCode #349)
+
+**🎯 Pattern:** Set Operations
+
+#### Your Approach ✓
+```python
+class Solution(object):
+    def intersection(self, nums1, nums2):
+        seen = set(nums1)
+        res = set()
+        
+        for num in nums2:
+            if num in seen:
+                res.add(num)
+        
+        return list(res)
+```
+
+**Algorithm:**
+- Convert first array to set
+- Iterate through second array
+- Add common elements to result set
+
+**Complexity:**
+- **Time:** O(n + m) - optimal
+- **Space:** O(n) - for sets
+
+**How It Works:**
+```
+nums1 = [1,2,2,1], nums2 = [2,2]
+seen = {1,2}
+num=2: in seen → res={2}
+num=2: in seen → res={2} (no duplicate)
+Return [2]
+```
+
+#### ✨ Optimal Approach
+
+```python
+class Solution:
+    def intersection(self, nums1: list[int], nums2: list[int]) -> list[int]:
+        return list(set(nums1) & set(nums2))
+```
+
+**Algorithm:**
+- Use built-in set intersection operator `&`
+- Convert both arrays to sets
+- Return intersection as list
+
+**Complexity:**
+- **Time:** O(n + m) - same complexity
+- **Space:** O(n) - same space
+
+**Key Learnings:**
+- ✅ Your solution is near-optimal
+- ✅ Set intersection operator is more Pythonic
+- ✅ Both approaches have same complexity
+- ✅ Set automatically handles duplicates
+
+---
+
+### 17. Best Time to Buy and Sell Stock (LeetCode #121)
+
+**🎯 Pattern:** Greedy Single Pass (Kadane's Variant)
+
+#### Your Approach ✓✓
+```python
+class Solution(object):
+    def maxProfit(self, prices):
+        min_price = float('inf')
+        max_profit = 0
+        
+        for price in prices:
+            if price < min_price:
+                min_price = price
+            elif price - min_price > max_profit:
+                max_profit = price - min_price
+        
+        return max_profit
+```
+
+**Algorithm:**
+- Track minimum price seen so far
+- Calculate profit at each step
+- Update maximum profit
+
+**Complexity:**
+- **Time:** O(n) - single pass
+- **Space:** O(1) - two variables
+
+**How It Works:**
+```
+[7,1,5,3,6,4]
+price=7: min=7, profit=0
+price=1: min=1, profit=0
+price=5: min=1, profit=4
+price=3: min=1, profit=4
+price=6: min=1, profit=5
+price=4: min=1, profit=5
+Return 5
+```
+
+**Optimal:** **ALREADY OPTIMAL!** ✓✓
+
+**Alternative (More Pythonic):**
+```python
+class Solution:
+    def maxProfit(self, prices: list[int]) -> int:
+        min_price = float('inf')
+        max_profit = 0
+        
+        for price in prices:
+            min_price = min(min_price, price)
+            max_profit = max(max_profit, price - min_price)
+        
+        return max_profit
+```
+
+**Key Learnings:**
+- ✅ Greedy approach works perfectly here
+- ✅ Track running minimum for optimal buy point
+- ✅ Single pass is optimal - can't do better than O(n)
+- ✅ Similar to maximum subarray problem (Kadane's algorithm)
+- ✅ Perfect solution on first try!
+
+---
+
 ## 📖 MEDIUM PROBLEMS
 
-### 13. Reverse Integer (LeetCode #7)
+### 18. Reverse Integer (LeetCode #7)
 
 **🎯 Pattern:** Mathematical Digit Manipulation
 
@@ -1052,7 +1401,7 @@ res = 321 * 1 = 321
 
 ---
 
-### 14. Remove Minimum and Maximum From Array (LeetCode #2091)
+### 19. Remove Minimum and Maximum From Array (LeetCode #2091)
 
 **🎯 Pattern:** Index-Based Optimization (Greedy Choice)
 
@@ -1162,6 +1511,99 @@ give same result when simplified, so only need one "both" calculation.
 
 ---
 
+### 20. Rotate Array (LeetCode #189)
+
+**🎯 Pattern:** Array Reversal Technique
+
+#### Your Approach ✓✓
+```python
+class Solution(object):
+    def rotate(self, nums, k):
+        k %= len(nums)
+        
+        nums[:] = nums[::-1]
+        
+        nums[:k] = nums[:k][::-1]
+        
+        nums[k:] = nums[k:][::-1]
+        
+        return nums
+```
+
+**Algorithm:**
+- Normalize k using modulo (handle k > n)
+- Reverse entire array
+- Reverse first k elements
+- Reverse remaining elements
+
+**Complexity:**
+- **Time:** O(n) - three reversals
+- **Space:** O(1) - in-place modification
+
+**How It Works:**
+```
+[1,2,3,4,5,6,7], k=3
+
+Step 1: Reverse all
+[7,6,5,4,3,2,1]
+
+Step 2: Reverse first k (3)
+[5,6,7,4,3,2,1]
+
+Step 3: Reverse rest
+[5,6,7,1,2,3,4] ✓
+```
+
+**Optimal:** **ALREADY OPTIMAL!** ✓✓
+
+**Why This Works:**
+```
+Original: [1,2,3,4,5,6,7], k=3
+Want: [5,6,7,1,2,3,4]
+
+Think of it as: [5,6,7] [1,2,3,4]
+               (last k) (first n-k)
+
+Reversal trick:
+1. Reverse all → reverses both parts AND their order
+2. Reverse each part back → correct element order
+```
+
+**Alternative Approaches:**
+```python
+# Using extra space (not optimal)
+def rotate(self, nums, k):
+    k %= len(nums)
+    nums[:] = nums[-k:] + nums[:-k]  # O(n) space
+
+# Using cyclic replacements (complex)
+def rotate(self, nums, k):
+    n = len(nums)
+    k %= n
+    count = 0
+    start = 0
+    while count < n:
+        current = start
+        prev = nums[start]
+        while True:
+            next_idx = (current + k) % n
+            nums[next_idx], prev = prev, nums[next_idx]
+            current = next_idx
+            count += 1
+            if start == current:
+                break
+        start += 1
+```
+
+**Key Learnings:**
+- ✅ Reversal technique is elegant and optimal
+- ✅ Three reversals achieve rotation in-place
+- ✅ O(1) space is better than O(n) with slicing
+- ✅ Remember to normalize k with modulo
+- ✅ Perfect solution on first try!
+
+---
+
 ## 📊 PATTERN CATEGORIES SUMMARY
 
 ### 1. 🧮 Mathematical Optimization (3 problems)
@@ -1174,40 +1616,44 @@ give same result when simplified, so only need one "both" calculation.
 
 ---
 
-### 2. 💾 Space Optimization (3 problems)
+### 2. 💾 Space Optimization (4 problems)
 - **Valid Palindrome:** In-place filtering
 - **Palindrome Number:** No string allocation
 - **Longest Common Prefix:** Slicing vs concatenation
+- **Majority Element:** Boyer-Moore voting
 
 **Core Principle:** Avoid creating intermediate data structures  
 **Benefit:** O(1) space instead of O(n)
 
 ---
 
-### 3. 🗺️ Hash Map Optimization (2 problems)
+### 3. 🗺️ Hash Map Optimization (3 problems)
 - **Valid Anagram:** Frequency counting
 - **Group Anagrams:** Character frequency as key
+- **Two Sum:** Complement lookup
 
-**Core Principle:** Hash maps beat sorting for counting  
-**Benefit:** O(n) instead of O(n log n)
+**Core Principle:** Hash maps beat sorting for counting/lookup  
+**Benefit:** O(n) instead of O(n²) or O(n log n)
 
 ---
 
-### 4. ↔️ Two-Pointer Technique (5 problems)
+### 4. ↔️ Two-Pointer Technique (6 problems)
 - **Remove Duplicates from Sorted List:** Linked list
 - **Valid Palindrome:** String traversal
 - **Longest Common Prefix:** Vertical scanning
 - **Is Subsequence:** Greedy tracking
 - **String Compression:** In-place modification
+- **Move Zeroes:** In-place swap
 
 **Core Principle:** In-place modification with dual pointers  
 **Benefit:** O(1) space, single pass, efficient
 
 ---
 
-### 5. 🏗️ Data Structure Selection (2 problems)
+### 5. 🏗️ Data Structure Selection (3 problems)
 - **Count Vowel Strings:** Set vs List
 - **Valid Parentheses:** Stack for matching
+- **Intersection of Two Arrays:** Set operations
 
 **Core Principle:** Choose right data structure for operations  
 **Benefit:** O(1) operations instead of O(n), optimal matching
@@ -1222,11 +1668,20 @@ give same result when simplified, so only need one "both" calculation.
 
 ---
 
-### 7. 🔄 Single-Pass Optimization (1 problem)
+### 7. 🔄 Single-Pass Optimization (2 problems)
 - **Remove Min/Max from Array:** Combined operations
+- **Best Time to Buy and Sell Stock:** Greedy tracking
 
 **Core Principle:** Minimize number of array traversals  
 **Benefit:** Better constants, fewer cache misses
+
+---
+
+### 8. 🔁 Array Rotation/Reversal (1 problem)
+- **Rotate Array:** Triple reversal technique
+
+**Core Principle:** Use reversals for in-place rotation  
+**Benefit:** O(1) space vs O(n) with extra array
 
 ---
 
@@ -1246,8 +1701,14 @@ give same result when simplified, so only need one "both" calculation.
 | Valid Parentheses | O(n) time, O(n) sp | O(n) time, O(n) sp | ✨ Minor |
 | Group Anagrams | O(nk) time, O(nk) sp | O(nk) time, O(nk) sp | ✅ Perfect |
 | String Compression | O(n) time, O(1) sp | O(n) time, O(1) sp | ✅ Perfect |
+| Two Sum | O(n²) time, O(1) sp | O(n) time, O(n) sp | ⚡⚡ Time (Major) |
+| Move Zeroes | O(n²) time, O(1) sp | O(n) time, O(1) sp | ⚡⚡ Time (Major) |
+| Majority Element | O(n) time, O(n) sp | O(n) time, O(1) sp | ⚡ Space |
+| Intersection Arrays | O(n+m) time, O(n) sp | O(n+m) time, O(n) sp | ✨ Minor |
+| Best Time Stock | O(n) time, O(1) sp | O(n) time, O(1) sp | ✅ Perfect |
 | Reverse Integer | O(d) time, O(d) sp | O(d) time, O(1) sp | ⚡ Space |
 | Remove Min/Max | O(n) time, O(1) sp | O(n) time, O(1) sp | ✨ Constant |
+| Rotate Array | O(n) time, O(1) sp | O(n) time, O(1) sp | ✅ Perfect |
 
 **Legend:**
 - ✅ Perfect - Already optimal
@@ -1371,18 +1832,21 @@ sum(x**2 for x in range(1000000))  # Don't create list
 
 ## 📚 DIFFICULTY PROGRESSION
 
-### EASY (You've mastered 12) ✓
+### EASY (You've mastered 17) ✓
 - ✅ String manipulation basics (compression, prefix, palindrome)
-- ✅ Two-pointer fundamentals (subsequence, compression, scanning)
-- ✅ Basic hash maps (anagrams, frequency counting)
+- ✅ Two-pointer fundamentals (subsequence, compression, scanning, move zeroes)
+- ✅ Basic hash maps (anagrams, frequency counting, two sum)
 - ✅ Linked list basics (remove duplicates)
 - ✅ Stack operations (bracket matching)
 - ✅ In-place array modification
+- ✅ Set operations (intersection)
+- ✅ Greedy algorithms (stock profit)
 
-### MEDIUM (You've done 2) ✓
+### MEDIUM (You've done 3) ✓
 - ✅ Mathematical optimizations
 - ✅ Index manipulation
 - ✅ Multiple scenario analysis
+- ✅ Array rotation techniques
 
 ### HARD (Next challenge) 🎯
 - → Dynamic programming
@@ -1465,9 +1929,10 @@ Before coding, ask yourself:
 - → Practice single-pass optimizations
 
 ### YOUR STATISTICS:
-- **4 Perfect solutions** (Remove Duplicates, Is Subsequence, Group Anagrams, String Compression) ✅✅
-- **3 Near-optimal solutions** (Count Vowels, FizzBuzz, Valid Parentheses) ✅
-- **7 Solutions with optimization opportunities** (50%)
+- **6 Perfect solutions** (Remove Duplicates, Is Subsequence, Group Anagrams, String Compression, Best Time to Buy/Sell Stock, Rotate Array) ✅✅
+- **5 Near-optimal solutions** (Count Vowels, FizzBuzz, Valid Parentheses, Intersection of Arrays, Remove Min/Max) ✅
+- **9 Solutions with optimization opportunities** (45%)
+- **Improvement Rate:** 55% optimal/near-optimal on first try!
 
 ### NEXT MILESTONE:
 - → Achieve 80%+ optimal solutions on first try
@@ -1481,18 +1946,27 @@ Before coding, ask yourself:
 ## 🚀 FINAL THOUGHTS
 
 You've made excellent progress! You have:
-- ✅ Solved 14 problems across different patterns
-- ✅ Achieved 4 perfect optimal solutions on first try
+- ✅ Solved 20 problems across different patterns
+- ✅ Achieved 6 perfect optimal solutions on first try
 - ✅ Demonstrated understanding of core data structures
 - ✅ Shown ability to analyze complexity
+- ✅ 55% optimal/near-optimal rate - great improvement!
 
 **Keep practicing!** Every problem teaches a new pattern. Focus on:
 1. **Recognizing patterns faster** - You'll start seeing similar problems
-2. **Space optimization** - Your main improvement area
-3. **Mathematical thinking** - Look for formulas before loops
-4. **Medium problems** - Build confidence with harder challenges
+2. **Hash maps for O(n²) → O(n)** - Two Sum is a classic example
+3. **Avoid mutation during iteration** - Move Zeroes lesson
+4. **Mathematical thinking** - Look for formulas before loops
+5. **Medium problems** - Build confidence with harder challenges
 
 **Remember:** The goal isn't just to solve problems, but to recognize patterns and apply optimal solutions naturally. You're on the right track! 🎉
+
+**New Patterns Learned:**
+- ✅ Hash map for complement lookup (Two Sum)
+- ✅ Two-pointer swap technique (Move Zeroes)
+- ✅ Boyer-Moore voting algorithm (Majority Element)
+- ✅ Triple reversal for rotation (Rotate Array)
+- ✅ Greedy single-pass tracking (Best Time to Buy/Sell Stock)
 
 ---
 

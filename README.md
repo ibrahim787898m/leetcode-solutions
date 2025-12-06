@@ -3,8 +3,8 @@
 A collection of **LeetCode problem solutions** implemented in **Python**, organized by difficulty.  
 This repository is intended for **learning, practice, and reference purposes**.
 
-**Total Problems Solved:** 14 (12 Easy, 2 Medium)  
-**Last Updated:** November 23, 2025
+**Total Problems Solved:** 20 (17 Easy, 3 Medium)  
+**Last Updated:** December 2, 2025
 
 ## Repository Structure
 
@@ -12,8 +12,8 @@ This repository is intended for **learning, practice, and reference purposes**.
 leetcode-solutions/
 │
 ├── python/
-│   ├── easy/                        # Easy level problems (12)
-│   ├── medium/                      # Medium level problems (2)
+│   ├── easy/                        # Easy level problems (17)
+│   ├── medium/                      # Medium level problems (3)
 │   ├── hard/                        # Hard level problems (0)
 │   └── COMPLETE_PATTERNS_GUIDE.md   # Comprehensive study guide
 │
@@ -34,7 +34,7 @@ python problem_name.py
 
 ## Problems Solved
 
-### Easy (12)
+### Easy (17)
 
 | # | Problem | File | Pattern |
 |---|---------|------|---------|
@@ -44,19 +44,25 @@ python problem_name.py
 | 4 | Palindrome Number | `palindrome_number.py` | Mathematical Reversal |
 | 5 | Valid Anagram | `valid_anagram.py` | Hash Map Frequency Counting |
 | 6 | Remove Duplicates from Sorted List | `remove_duplicates_from_sorted_list.py` | Two-Pointer (Linked List) |
-| 7 | Valid Palindrome | `valid_palindrome.py` | Two-Pointer In-Place |
+| 7 | Valid Palindrome | `valid_palidrome.py` | Two-Pointer In-Place |
 | 8 | Longest Common Prefix | `longest_common_prefix.py` | Vertical Scanning |
 | 9 | Is Subsequence | `is_subsequence.py` | Two-Pointer Greedy |
 | 10 | Valid Parentheses | `valid_parentheses.py` | Stack Matching |
 | 11 | Group Anagrams | `group_anagrams.py` | Hash Map with Frequency Key |
 | 12 | String Compression | `string_compression.py` | Two-Pointer In-Place |
+| 13 | Two Sum | `two_sum.py` | Hash Map Complement Lookup |
+| 14 | Move Zeroes | `move_zeroes.py` | Two-Pointer In-Place Swap |
+| 15 | Majority Element | `majority_element.py` | Boyer-Moore Voting |
+| 16 | Intersection of Two Arrays | `intersect_two_array.py` | Set Operations |
+| 17 | Best Time to Buy and Sell Stock | `best_time_to_buy_sell_stock.py` | Greedy Single Pass |
 
-### Medium (2)
+### Medium (3)
 
 | # | Problem | File | Pattern |
 |---|---------|------|---------|
-| 13 | Reverse Integer | `reverse_integer.py` | Mathematical Digit Manipulation |
-| 14 | Remove Min and Max from Array | `remove_min_max_from_array.py` | Index-Based Optimization |
+| 18 | Reverse Integer | `reverse_integer.py` | Mathematical Digit Manipulation |
+| 19 | Remove Min and Max from Array | `remove_min_max_from_array.py` | Index-Based Optimization |
+| 20 | Rotate Array | `rotate_array.py` | Array Reversal Technique |
 
 ## 📚 Study Guide
 
@@ -72,8 +78,15 @@ Check out **[COMPLETE_PATTERNS_GUIDE.md](python/COMPLETE_PATTERNS_GUIDE.md)** fo
 - Solutions focus on **clarity, readability, and correctness**.
 - Python solutions require **Python 3.x**.
 - Each solution includes time/space complexity analysis.
-- 4 solutions are already optimal on first try! ✓✓
+- **6 solutions are already optimal on first try!** ✓✓
+- **55% optimal/near-optimal rate** - continuously improving!
 - This repository is meant for **personal learning and practice purposes**.
+
+## Progress Highlights
+
+- ✅ **Perfect Solutions (6):** Remove Duplicates from Sorted List, Is Subsequence, Group Anagrams, String Compression, Best Time to Buy/Sell Stock, Rotate Array
+- ✅ **Near-Optimal (5):** Count Vowel Strings, FizzBuzz, Valid Parentheses, Intersection of Arrays, Remove Min/Max from Array
+- 🎯 **Key Patterns Mastered:** Two-Pointer, Hash Maps, Boyer-Moore, Array Reversal, Greedy Algorithms
 
 ## License
 
