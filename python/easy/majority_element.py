@@ -14,7 +14,7 @@ class Solution(object):
         for num in nums:
             count[num] = count.get(num, 0) + 1
 
-        max_key = max(count, key=count.get)
+        max_key = max(count, key=count.get) # type: ignore
         return max_key
     
 if __name__ == "__main__":
