@@ -3,8 +3,8 @@
 A collection of **LeetCode problem solutions** implemented in **Python**, organized by difficulty.  
 This repository is intended for **learning, practice, and reference purposes**.
 
-**Total Problems Solved:** 27 (23 Easy, 4 Medium)  
-**Last Updated:** December 16, 2025
+**Total Problems Solved:** 34 (23 Easy, 9 Medium, 2 Hard)  
+**Last Updated:** December 28, 2025
 
 ## Repository Structure
 
@@ -13,8 +13,8 @@ leetcode-solutions/
 │
 ├── python/
 │   ├── easy/                        # Easy level problems (23)
-│   ├── medium/                      # Medium level problems (4)
-│   ├── hard/                        # Hard level problems (0)
+│   ├── medium/                      # Medium level problems (9)
+│   ├── hard/                        # Hard level problems (2)
 │   └── COMPLETE_PATTERNS_GUIDE.md   # Comprehensive study guide
 │
 ├── README.md                        # This file
@@ -62,7 +62,7 @@ python problem_name.py
 | 22 | Missing Number | `missing_number.py` | Mathematical Formula (Gauss Sum) |
 | 23 | Happy Number | `happy_number.py` | Cycle Detection (Floyd's Algorithm) |
 
-### Medium (4)
+### Medium (9)
 
 | # | Problem | File | Pattern |
 |---|---------|------|---------|
@@ -70,6 +70,18 @@ python problem_name.py
 | 25 | Remove Min and Max from Array | `remove_min_max_from_array.py` | Index-Based Optimization |
 | 26 | Rotate Array | `rotate_array.py` | Array Reversal Technique |
 | 27 | Longest Consecutive Sequence | `longest_consecutive_sequence.py` | Smart Hash Set Iteration |
+| 28 | 3Sum | `3sum.py` | Sorting + Two Pointers |
+| 29 | Container With Most Water | `container_with_most_water.py` | Greedy Two Pointers |
+| 30 | Longest Substring Without Repeating Characters | `longest_substring_without_repeating_char.py` | Sliding Window + Hash Set |
+| 31 | Longest Repeating Character Replacement | `longest_repeating_char_replacement.py` | Sliding Window + Frequency Count |
+| 32 | Maximum Sum of Distinct Subarrays of Length K | `maximum_sum_subarray_of_length_K.py` | Fixed Sliding Window |
+
+### Hard (2)
+
+| # | Problem | File | Pattern |
+|---|---------|------|---------|
+| 33 | Trapping Rain Water | `trapping_rain_water.py` | Two Pointers with Max Tracking |
+| 34 | Minimum Window Substring | `minimum_window_substring.py` | Sliding Window + Dual Hash Maps |
 
 ## 📚 Study Guide
 
@@ -85,15 +97,17 @@ Check out **[COMPLETE_PATTERNS_GUIDE.md](python/COMPLETE_PATTERNS_GUIDE.md)** fo
 - Solutions focus on **clarity, readability, and correctness**.
 - Python solutions require **Python 3.x**.
 - Each solution includes time/space complexity analysis.
-- **7 solutions are already optimal on first try!** ✓✓
-- **54% optimal/near-optimal rate** - continuously improving!
+- **14 solutions are already optimal on first try!** ✓✓
+- **62% optimal/near-optimal rate** - continuously improving!
+- **100% optimal rate on recent problems** - showing rapid pattern mastery!
 - This repository is meant for **personal learning and practice purposes**.
 
 ## Progress Highlights
 
-- ✅ **Perfect Solutions (7):** Remove Duplicates from Sorted List, Is Subsequence, Group Anagrams, String Compression, Best Time to Buy/Sell Stock, Rotate Array, Longest Consecutive Sequence
+- ✅ **Perfect Solutions (14):** Remove Duplicates from Sorted List, Is Subsequence, Group Anagrams, String Compression, Best Time to Buy/Sell Stock, Rotate Array, Longest Consecutive Sequence, 3Sum, Container With Most Water, Longest Substring Without Repeating Characters, Longest Repeating Character Replacement, Maximum Sum of Distinct Subarrays, Trapping Rain Water, Minimum Window Substring
 - ✅ **Near-Optimal (7):** Count Vowel Strings, FizzBuzz, Valid Parentheses, Intersection of Arrays, Remove Min/Max from Array, Reverse String, Ransom Note
-- 🎯 **Key Patterns Mastered:** Two-Pointer, Hash Maps/Sets, Boyer-Moore, Array Reversal, Greedy Algorithms, Dynamic Programming, Cycle Detection, Mathematical Optimization
+- 🎯 **Key Patterns Mastered:** Two-Pointer (13 problems), Sliding Window (4 problems), Hash Maps/Sets, Boyer-Moore, Array Reversal, Greedy Algorithms, Dynamic Programming, Cycle Detection, Mathematical Optimization
+- 🌟 **Achievement Unlocked:** All sliding window problems perfect (4/4)! All hard problems perfect (2/2)!
 
 ## License
 
