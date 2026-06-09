@@ -3,7 +3,7 @@
 A collection of **LeetCode problem solutions** implemented in **Python**, organized by difficulty.  
 This repository is intended for **learning, practice, and reference purposes**.
 
-**Total Problems Solved:** 34 (23 Easy, 9 Medium, 2 Hard)  
+**Total Problems Solved:** 34 (22 Easy, 10 Medium, 2 Hard)  
 **Last Updated:** December 28, 2025
 
 ## Repository Structure
@@ -12,8 +12,8 @@ This repository is intended for **learning, practice, and reference purposes**.
 leetcode-solutions/
 │
 ├── python/
-│   ├── easy/                        # Easy level problems (23)
-│   ├── medium/                      # Medium level problems (9)
+│   ├── easy/                        # Easy level problems (22)
+│   ├── medium/                      # Medium level problems (10)
 │   ├── hard/                        # Hard level problems (2)
 │   └── COMPLETE_PATTERNS_GUIDE.md   # Comprehensive study guide
 │
@@ -34,7 +34,7 @@ python problem_name.py
 
 ## Problems Solved
 
-### Easy (23)
+### Easy (22)
 
 | # | Problem | File | Pattern |
 |---|---------|------|---------|
@@ -48,33 +48,33 @@ python problem_name.py
 | 8 | Longest Common Prefix | `longest_common_prefix.py` | Vertical Scanning |
 | 9 | Is Subsequence | `is_subsequence.py` | Two-Pointer Greedy |
 | 10 | Valid Parentheses | `valid_parentheses.py` | Stack Matching |
-| 11 | Group Anagrams | `group_anagrams.py` | Hash Map with Frequency Key |
-| 12 | String Compression | `string_compression.py` | Two-Pointer In-Place |
-| 13 | Two Sum | `two_sum.py` | Hash Map Complement Lookup |
-| 14 | Move Zeroes | `move_zeroes.py` | Two-Pointer In-Place Swap |
-| 15 | Majority Element | `majority_element.py` | Boyer-Moore Voting |
-| 16 | Intersection of Two Arrays | `intersect_two_array.py` | Set Operations |
-| 17 | Best Time to Buy and Sell Stock | `best_time_to_buy_sell_stock.py` | Greedy Single Pass |
-| 18 | Fibonacci Number | `fibonacci_number.py` | Dynamic Programming (Iterative) |
-| 19 | Reverse String | `reverse_string.py` | Two-Pointer In-Place Swap |
-| 20 | Contains Duplicate | `contains_duplicate.py` | Hash Set with Early Return |
-| 21 | Ransom Note | `ransom_note.py` | Frequency Counting (Counter) |
-| 22 | Missing Number | `missing_number.py` | Mathematical Formula (Gauss Sum) |
-| 23 | Happy Number | `happy_number.py` | Cycle Detection (Floyd's Algorithm) |
+| 11 | String Compression | `string_compression.py` | Two-Pointer In-Place |
+| 12 | Two Sum | `two_sum.py` | Hash Map Complement Lookup |
+| 13 | Move Zeroes | `move_zeroes.py` | Two-Pointer In-Place Swap |
+| 14 | Majority Element | `majority_element.py` | Boyer-Moore Voting |
+| 15 | Intersection of Two Arrays | `intersect_two_array.py` | Set Operations |
+| 16 | Best Time to Buy and Sell Stock | `best_time_to_buy_sell_stock.py` | Greedy Single Pass |
+| 17 | Fibonacci Number | `fibonacci_number.py` | Dynamic Programming (Iterative) |
+| 18 | Reverse String | `reverse_string.py` | Two-Pointer In-Place Swap |
+| 19 | Contains Duplicate | `contains_duplicate.py` | Hash Set with Early Return |
+| 20 | Ransom Note | `ransom_note.py` | Frequency Counting (Counter) |
+| 21 | Missing Number | `missing_number.py` | Mathematical Formula (Gauss Sum) |
+| 22 | Happy Number | `happy_number.py` | Cycle Detection (Floyd's Algorithm) |
 
-### Medium (9)
+### Medium (10)
 
 | # | Problem | File | Pattern |
 |---|---------|------|---------|
-| 24 | Reverse Integer | `reverse_integer.py` | Mathematical Digit Manipulation |
-| 25 | Remove Min and Max from Array | `remove_min_max_from_array.py` | Index-Based Optimization |
-| 26 | Rotate Array | `rotate_array.py` | Array Reversal Technique |
-| 27 | Longest Consecutive Sequence | `longest_consecutive_sequence.py` | Smart Hash Set Iteration |
-| 28 | 3Sum | `3sum.py` | Sorting + Two Pointers |
-| 29 | Container With Most Water | `container_with_most_water.py` | Greedy Two Pointers |
-| 30 | Longest Substring Without Repeating Characters | `longest_substring_without_repeating_char.py` | Sliding Window + Hash Set |
-| 31 | Longest Repeating Character Replacement | `longest_repeating_char_replacement.py` | Sliding Window + Frequency Count |
-| 32 | Maximum Sum of Distinct Subarrays of Length K | `maximum_sum_subarray_of_length_K.py` | Fixed Sliding Window |
+| 23 | Reverse Integer | `reverse_integer.py` | Mathematical Digit Manipulation |
+| 24 | Remove Min and Max from Array | `remove_min_max_from_array.py` | Index-Based Optimization |
+| 25 | Rotate Array | `rotate_array.py` | Array Reversal Technique |
+| 26 | Longest Consecutive Sequence | `longest_consecutive_sequence.py` | Smart Hash Set Iteration |
+| 27 | 3Sum | `3sum.py` | Sorting + Two Pointers |
+| 28 | Container With Most Water | `container_with_most_water.py` | Greedy Two Pointers |
+| 29 | Longest Substring Without Repeating Characters | `longest_substring_without_repeating_char.py` | Sliding Window + Hash Set |
+| 30 | Longest Repeating Character Replacement | `longest_repeating_char_replacement.py` | Sliding Window + Frequency Count |
+| 31 | Maximum Sum of Distinct Subarrays of Length K | `maximum_sum_subarray_of_length_K.py` | Fixed Sliding Window |
+| 32 | Group Anagrams | `group_anagrams.py` | Hash Map with Frequency Key |
 
 ### Hard (2)
 

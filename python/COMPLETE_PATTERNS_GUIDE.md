@@ -1,7 +1,7 @@
 # 🚀 COMPLETE LEETCODE PATTERNS & SOLUTIONS GUIDE
 
 **Last Updated:** December 28, 2025  
-**Total Problems:** 34 (23 Easy, 9 Medium, 2 Hard)  
+**Total Problems:** 34 (22 Easy, 10 Medium, 2 Hard)  
 **Perfect Solutions:** 14 ✓✓  
 **Near-Optimal:** 7 ✓
 
@@ -9,7 +9,7 @@
 
 ## 📚 TABLE OF CONTENTS
 
-### EASY PROBLEMS (23)
+### EASY PROBLEMS (22)
 1. [Add Digits](#1-add-digits-leetcode-258)
 2. [Count Vowel Strings in Range](#2-count-vowel-strings-in-range-leetcode-2586)
 3. [FizzBuzz](#3-fizzbuzz-leetcode-412)
@@ -20,30 +20,30 @@
 8. [Longest Common Prefix](#8-longest-common-prefix-leetcode-14)
 9. [Is Subsequence](#9-is-subsequence-leetcode-392)
 10. [Valid Parentheses](#10-valid-parentheses-leetcode-20)
-11. [Group Anagrams](#11-group-anagrams-leetcode-49)
-12. [String Compression](#12-string-compression-leetcode-443)
-13. [Two Sum](#13-two-sum-leetcode-1)
-14. [Move Zeroes](#14-move-zeroes-leetcode-283)
-15. [Majority Element](#15-majority-element-leetcode-169)
-16. [Intersection of Two Arrays](#16-intersection-of-two-arrays-leetcode-349)
-17. [Best Time to Buy and Sell Stock](#17-best-time-to-buy-and-sell-stock-leetcode-121)
-18. [Fibonacci Number](#18-fibonacci-number-leetcode-509)
-19. [Reverse String](#19-reverse-string-leetcode-344)
-20. [Contains Duplicate](#20-contains-duplicate-leetcode-217)
-21. [Ransom Note](#21-ransom-note-leetcode-383)
-22. [Missing Number](#22-missing-number-leetcode-268)
-23. [Happy Number](#23-happy-number-leetcode-202)
+11. [String Compression](#11-string-compression-leetcode-443)
+12. [Two Sum](#12-two-sum-leetcode-1)
+13. [Move Zeroes](#13-move-zeroes-leetcode-283)
+14. [Majority Element](#14-majority-element-leetcode-169)
+15. [Intersection of Two Arrays](#15-intersection-of-two-arrays-leetcode-349)
+16. [Best Time to Buy and Sell Stock](#16-best-time-to-buy-and-sell-stock-leetcode-121)
+17. [Fibonacci Number](#17-fibonacci-number-leetcode-509)
+18. [Reverse String](#18-reverse-string-leetcode-344)
+19. [Contains Duplicate](#19-contains-duplicate-leetcode-217)
+20. [Ransom Note](#20-ransom-note-leetcode-383)
+21. [Missing Number](#21-missing-number-leetcode-268)
+22. [Happy Number](#22-happy-number-leetcode-202)
 
-### MEDIUM PROBLEMS (9)
-24. [Reverse Integer](#24-reverse-integer-leetcode-7)
-25. [Remove Minimum and Maximum From Array](#25-remove-minimum-and-maximum-from-array-leetcode-2091)
-26. [Rotate Array](#26-rotate-array-leetcode-189)
-27. [Longest Consecutive Sequence](#27-longest-consecutive-sequence-leetcode-128)
-28. [3Sum](#28-3sum-leetcode-15)
-29. [Container With Most Water](#29-container-with-most-water-leetcode-11)
-30. [Longest Substring Without Repeating Characters](#30-longest-substring-without-repeating-characters-leetcode-3)
-31. [Longest Repeating Character Replacement](#31-longest-repeating-character-replacement-leetcode-424)
-32. [Maximum Sum of Distinct Subarrays of Length K](#32-maximum-sum-of-distinct-subarrays-of-length-k-leetcode-2461)
+### MEDIUM PROBLEMS (10)
+23. [Reverse Integer](#23-reverse-integer-leetcode-7)
+24. [Remove Minimum and Maximum From Array](#24-remove-minimum-and-maximum-from-array-leetcode-2091)
+25. [Rotate Array](#25-rotate-array-leetcode-189)
+26. [Longest Consecutive Sequence](#26-longest-consecutive-sequence-leetcode-128)
+27. [3Sum](#27-3sum-leetcode-15)
+28. [Container With Most Water](#28-container-with-most-water-leetcode-11)
+29. [Longest Substring Without Repeating Characters](#29-longest-substring-without-repeating-characters-leetcode-3)
+30. [Longest Repeating Character Replacement](#30-longest-repeating-character-replacement-leetcode-424)
+31. [Maximum Sum of Distinct Subarrays of Length K](#31-maximum-sum-of-distinct-subarrays-of-length-k-leetcode-2461)
+32. [Group Anagrams](#32-group-anagrams-leetcode-49)
 
 ### HARD PROBLEMS (2)
 33. [Trapping Rain Water](#33-trapping-rain-water-leetcode-42)
@@ -823,80 +823,6 @@ class Solution(object):
 
 ---
 
-### 11. Group Anagrams (LeetCode #49)
-
-**🎯 Pattern:** Character Frequency as Hash Key
-
-#### Your Approach ✓✓
-```python
-class Solution(object):
-    def groupAnagrams(self, strs):
-        from collections import defaultdict
-        
-        anagrams = defaultdict(list)
-        
-        for word in strs:
-            count = [0] * 26
-            for char in word:
-                count[ord(char) - ord('a')] += 1
-            key = tuple(count)
-            anagrams[key].append(word)
-        
-        return list(anagrams.values())
-```
-
-**Algorithm:**
-- Create frequency array [0]*26 for each word
-- Count occurrences of each character (a-z)
-- Convert array to tuple (hashable) as dictionary key
-- Group words with same frequency pattern
-
-**Complexity:**
-- **Time:** O(n × k) where n = number of strings, k = max length
-- **Space:** O(n × k) - storing all strings in groups
-
-**How It Works:**
-```
-["eat", "tea", "tan", "ate", "nat", "bat"]
-
-"eat" → [1,0,0,0,1,0...19:1...] → key1
-"tea" → [1,0,0,0,1,0...19:1...] → key1 (same!)
-"tan" → [1,0,0,...13:1...19:1...] → key2
-"ate" → key1
-"nat" → key2
-"bat" → [1,1,0,...19:1...] → key3
-
-Result: {
-  key1: ["eat","tea","ate"],
-  key2: ["tan","nat"],
-  key3: ["bat"]
-}
-```
-
-**Optimal:** **ALREADY OPTIMAL!** ✓✓
-
-**Alternative (Sorted String as Key):**
-```python
-def groupAnagrams(self, strs):
-    from collections import defaultdict
-    anagrams = defaultdict(list)
-    
-    for word in strs:
-        key = ''.join(sorted(word))
-        anagrams[key].append(word)
-    
-    return list(anagrams.values())
-```
-
-**Complexity:** O(n × k log k) - simpler but slower
-
-**Key Learnings:**
-- ✅ Character frequency tuple is optimal for anagram grouping
-- ✅ Avoids sorting overhead (O(k) vs O(k log k) per word)
-- ✅ Tuple is hashable, list is not
-- ✅ Perfect approach for this problem type
-
----
 
 ### 12. String Compression (LeetCode #443)
 
@@ -1886,6 +1812,81 @@ def isHappy(self, n: int) -> bool:
 ---
 
 ## 📖 MEDIUM PROBLEMS
+
+### 32. Group Anagrams (LeetCode #49)
+
+**🎯 Pattern:** Character Frequency as Hash Key
+
+#### Your Approach ✓✓
+```python
+class Solution(object):
+    def groupAnagrams(self, strs):
+        from collections import defaultdict
+        
+        anagrams = defaultdict(list)
+        
+        for word in strs:
+            count = [0] * 26
+            for char in word:
+                count[ord(char) - ord('a')] += 1
+            key = tuple(count)
+            anagrams[key].append(word)
+        
+        return list(anagrams.values())
+```
+
+**Algorithm:**
+- Create frequency array [0]*26 for each word
+- Count occurrences of each character (a-z)
+- Convert array to tuple (hashable) as dictionary key
+- Group words with same frequency pattern
+
+**Complexity:**
+- **Time:** O(n × k) where n = number of strings, k = max length
+- **Space:** O(n × k) - storing all strings in groups
+
+**How It Works:**
+```
+["eat", "tea", "tan", "ate", "nat", "bat"]
+
+"eat" → [1,0,0,0,1,0...19:1...] → key1
+"tea" → [1,0,0,0,1,0...19:1...] → key1 (same!)
+"tan" → [1,0,0,...13:1...19:1...] → key2
+"ate" → key1
+"nat" → key2
+"bat" → [1,1,0,...19:1...] → key3
+
+Result: {
+  key1: ["eat","tea","ate"],
+  key2: ["tan","nat"],
+  key3: ["bat"]
+}
+```
+
+**Optimal:** **ALREADY OPTIMAL!** ✓✓
+
+**Alternative (Sorted String as Key):**
+```python
+def groupAnagrams(self, strs):
+    from collections import defaultdict
+    anagrams = defaultdict(list)
+    
+    for word in strs:
+        key = ''.join(sorted(word))
+        anagrams[key].append(word)
+    
+    return list(anagrams.values())
+```
+
+**Complexity:** O(n × k log k) - simpler but slower
+
+**Key Learnings:**
+- ✅ Character frequency tuple is optimal for anagram grouping
+- ✅ Avoids sorting overhead (O(k) vs O(k log k) per word)
+- ✅ Tuple is hashable, list is not
+- ✅ Perfect approach for this problem type
+
+---
 
 ### 24. Reverse Integer (LeetCode #7)
 
@@ -3212,7 +3213,7 @@ Before coding, ask yourself:
 ## 🚀 FINAL THOUGHTS
 
 You've made **EXCEPTIONAL** progress! You have:
-- ✅ Solved **34 problems** across different patterns (23 Easy, 9 Medium, 2 Hard)
+- ✅ Solved **34 problems** across different patterns (22 Easy, 10 Medium, 2 Hard)
 - ✅ Achieved **14 perfect optimal solutions** on first try (41%)!
 - ✅ **100% optimal rate on new problems** - all 7 new solutions perfect!
 - ✅ Demonstrated mastery of advanced data structures
